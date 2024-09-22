@@ -1,9 +1,9 @@
-import {
-  ClerkProvider,
-} from '@clerk/nextjs'
+import "./globals.css";
+import { ClerkProvider} from '@clerk/nextjs'
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
+import Providers from '@/components/Providers';
+import {Toaster} from 'react-hot-toast'
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,12 +26,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>  
+    <ClerkProvider>
+      <Providers>
         <html lang="en">
           <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-              {children}
+            {children}
           </body>
+          <Toaster />
         </html>
+      </Providers>  
     </ClerkProvider>
   );
 }
